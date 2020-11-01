@@ -1,6 +1,7 @@
 <?php
 
-//this was created to test my database connections.  It currently does nothing, really
+//this was created to test my database connections.
+//It can be ignored for now as it only sets an id and username for the very first entry in the database
 
 //check for session
 if (!isset($_SESSION)) session_start();

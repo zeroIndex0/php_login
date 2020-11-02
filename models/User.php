@@ -50,7 +50,7 @@ class User {
 
     $stmt->bindParam(":email", $this->email);
 
-    echo "EMAIL PASED IN USER.php: " . $this->email . " ";
+    // echo "EMAIL PASED IN USER.php: " . $this->email . " ";
 
     try {
       $stmt->execute();

@@ -12,7 +12,7 @@ $db = $database->connectToDatabase();
 $user = new User($db);
 
 $user->email = $_POST["register_email"];
-echo "THIS IS THE EMAIL: " . $_POST["register_email"] . " ";
+// echo "THIS IS THE EMAIL: " . $_POST["register_email"] . " ";
 
 $result = $user->check_email();
 

@@ -16,7 +16,7 @@ if (isset($_POST["register_button"])) {
   $firstname = str_replace(" ", "", $firstname);
   $firstname = ucfirst(strtolower($firstname));
   $_SESSION["register_firstname"] = $firstname; // store modified input into a session variable
-  echo "firstname session: " . $_SESSION["register_firstname"] . " "; //checking output of session variable
+  // echo "firstname session: " . $_SESSION["register_firstname"] . " "; //checking output of session variable
 
   $lastname = strip_tags($_POST["register_lastname"]);
   $lastname = str_replace(" ", "", $lastname);
@@ -36,7 +36,7 @@ if (isset($_POST["register_button"])) {
   $password2 = strip_tags($_POST["register_password2"]);
 
   $date = date("Y-m-d"); //The current date
-  echo "The current date: " . $date . " ";
+  // echo "The current date: " . $date . " ";
 
   if ($email === $email2) {
     //check for email valid format

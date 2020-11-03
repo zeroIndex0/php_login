@@ -59,4 +59,24 @@ class User {
     }
     return $stmt;
   }
+
+  public function check_username() {
+    $query =
+      "SELECT username FROM " .
+      $this->table_name .
+      //nothing quite like spending 30 mitnues to find out the error was due to a not having a space before WHERE
+      " WHERE username= :username";
+
+    //prepare statement
+    $stmt = $this->connection->prepare($query);
+
+    $stmt->bindParam(":username", $this->username);
+
+    try {
+      $stmt->execute();
+    } catch (PDOException $error) {
+      echo "Connection Error On Check_Username: " . $error->getMessage();
+    }
+    return $stmt;
+  }
 }

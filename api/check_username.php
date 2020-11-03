@@ -14,9 +14,8 @@ $user = new User($db);
 echo "Pre setting username: " . $_SESSION["username"] . "<br>";
 
 $user->username = $_SESSION["username"];
-// isset($_SESSION["username"]) ? $user->username = $_SESSION["username"] : $user->username = "";
 // print out the username
-echo "This is the USERNAME IN check_username.php: " . $_SESSION["username"] . "<br>";
+// echo "This is the USERNAME IN check_username.php: " . $_SESSION["username"] . "<br>";
 
 $result = $user->check_username();
 

@@ -11,7 +11,7 @@ $db = $database->connectToDatabase();
 
 $user = new User($db);
 
-echo "Pre setting username: " . $_SESSION["username"] . "<br>";
+// echo "Pre setting username: " . $_SESSION["username"] . "<br>";
 
 $user->username = $_SESSION["username"];
 // print out the username

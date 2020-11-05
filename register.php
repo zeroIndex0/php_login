@@ -9,14 +9,15 @@ $email     = "";
 $email2    = "";
 $password  = "";
 $password2 = "";
+$date      = "";
 $error_array = array();
 
+//add htmlspecialcharacters to the strip tags
 if (isset($_POST["register_button"])) {
   $firstname = strip_tags($_POST["register_firstname"]);
   $firstname = str_replace(" ", "", $firstname);
   $firstname = ucfirst(strtolower($firstname));
   $_SESSION["register_firstname"] = $firstname; // store modified input into a session variable
-  // echo "firstname session: " . $_SESSION["register_firstname"] . " "; //checking output of session variable
 
   $lastname = strip_tags($_POST["register_lastname"]);
   $lastname = str_replace(" ", "", $lastname);
@@ -36,7 +37,6 @@ if (isset($_POST["register_button"])) {
   $password2 = strip_tags($_POST["register_password2"]);
 
   $date = date("Y-m-d"); //The current date
-  // echo "The current date: " . $date . " ";
 
   if ($email === $email2) {
     //check for email valid format
@@ -80,6 +80,10 @@ if (isset($_POST["register_button"])) {
 
 //if the error_array is empty, then all checks have passed.
 if (empty($error_array)) {
+  //not enough, but for this purpose its plenty
+  // $password = hash('SHA512', $password);
+  $_SESSION["password"] = $password;
+  $_SESSION["date"] = $date;
   //firstname and lastname are init as "" along with the error_array being init as empty.
   //so this makes sure it doesn't run the check on load.
   //basically, if all the values are default, then don't run the username check.
@@ -91,10 +95,15 @@ if (empty($error_array)) {
     //This keeps checking for a username that doesnt exist by adding _(i) to the end
     //until it finds a username that's not in the database
     while ($_SESSION["username_used"]) {
+      //This is an auto assigned username, for now
       $_SESSION["username"] = $username . "_" . $i;
       require "api/check_username.php";
       $i++;
     }
+    //we made all the checks, insert the user into the database.
+    //INsert all data into database, kthxbye
+    echo "ADDING USER: " . $_SESSION["username"] . "<br>";
+    include_once "api/add_user.php";
   }
 }
 
@@ -107,7 +116,7 @@ if (empty($error_array)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Kirby's Space</title>
+  <title>Register</title>
 </head>
 
 <body>
@@ -160,12 +169,12 @@ if (empty($error_array)) {
     <!-- verify password -->
     <input type="password" name="register_password2" placeholder="Confirm Password" required>
     <br>
-    <?php if (in_array("Your passwords don't match<br>", $error_array)) {
-      echo "Your passwords don't match<br>";
+    <?php if (in_array("You password must be between 6 and 30 characters<br>", $error_array)) {
+      echo "You password must be between 6 and 30 characters<br>";
     } else if (in_array("Password can only contain letter a-z and/or numbers<br>", $error_array)) {
       echo "Password can only contain letter a-z and/or numbers<br>";
-    } else if (in_array("You password must be between 6 and 30 characters<br>", $error_array)) {
-      echo "You password must be between 6 and 30 characters<br>";
+    } else if (in_array("Your passwords don't match<br>", $error_array)) {
+      echo "Your passwords don't match<br>";
     } ?>
 
     <!-- submit button -->

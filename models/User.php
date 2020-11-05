@@ -10,6 +10,7 @@ class User {
   public $email;
   public $password;
   public $signup_date;
+  //variables that arent currently being used
   public $profile_pic;
   public $num_posts;
   public $num_likes;
@@ -71,6 +72,37 @@ class User {
     $stmt = $this->connection->prepare($query);
 
     $stmt->bindParam(":username", $this->username);
+
+    try {
+      $stmt->execute();
+    } catch (PDOException $error) {
+      echo "Connection Error On Check_Username: " . $error->getMessage();
+    }
+    return $stmt;
+  }
+
+  public function add_user() {
+    $query =
+      "INSERT INTO " .
+      $this->table_name .
+      " VALUES( '', :first_name, :last_name, :username, :email, :password, :signup_date, " .
+      ":profile_pic, :num_posts, :num_likes, :user_closed, :friend_array)";
+
+    //prepare statement
+    $stmt = $this->connection->prepare($query);
+
+    $stmt->bindParam(":first_name", $this->first_name);
+    $stmt->bindParam(":last_name", $this->last_name);
+    $stmt->bindParam(":username", $this->username);
+    $stmt->bindParam(":email", $this->email);
+    $stmt->bindParam(":password", $this->password);
+    $stmt->bindParam(":signup_date", $this->signup_date);
+    //variables that aren't currently being used, so they are just placeholder values for now, created in api/add_user.php
+    $stmt->bindParam(":profile_pic", $this->profile_pic);
+    $stmt->bindParam(":num_posts", $this->num_posts);
+    $stmt->bindParam(":num_likes", $this->num_likes);
+    $stmt->bindParam(":user_closed", $this->user_closed);
+    $stmt->bindParam(":friend_array", $this->friend_array);
 
     try {
       $stmt->execute();

@@ -12,31 +12,32 @@ $password2 = "";
 $date      = "";
 $error_array = array();
 
-//add htmlspecialcharacters to the strip tags
+
 if (isset($_POST["register_button"])) {
-  $firstname = strip_tags($_POST["register_firstname"]);
+  $firstname = htmlspecialchars(strip_tags($_POST["register_firstname"]));
   $firstname = str_replace(" ", "", $firstname);
   $firstname = ucfirst(strtolower($firstname));
   $_SESSION["register_firstname"] = $firstname; // store modified input into a session variable
 
-  $lastname = strip_tags($_POST["register_lastname"]);
+  $lastname = htmlspecialchars(strip_tags($_POST["register_lastname"]));
   $lastname = str_replace(" ", "", $lastname);
   $lastname = ucfirst(strtolower($lastname));
   $_SESSION["register_lastname"] = $lastname; // store modified input into a session variable
 
-  $email = strip_tags($_POST["register_email"]);
+  $email = htmlspecialchars(strip_tags($_POST["register_email"]));
   $email = str_replace(" ", "", $email);
   $_SESSION["register_email"] = $email; // store modified input into a session variable
 
-  $email2 = strip_tags($_POST["register_email2"]);
+  $email2 = htmlspecialchars(strip_tags($_POST["register_email2"]));
   $email2 = str_replace(" ", "", $email2);
   $_SESSION["register_email2"] = $email2; // store modified input into a session variable
 
-  $password = strip_tags($_POST["register_password"]);
+  $password = htmlspecialchars(strip_tags($_POST["register_password"]));
 
-  $password2 = strip_tags($_POST["register_password2"]);
+  $password2 = htmlspecialchars(strip_tags($_POST["register_password2"]));
 
   $date = date("Y-m-d"); //The current date
+  
 
   if ($email === $email2) {
     //check for email valid format

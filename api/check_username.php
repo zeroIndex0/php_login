@@ -20,7 +20,7 @@ $user->username = $_SESSION["username"];
 $result = $user->check_username();
 
 $rows = $result->rowCount();
-echo "Row count: " . $rows . "<br>";
+// echo "Row count: " . $rows . "<br>";
 
 if($rows > 0) {
   $_SESSION["username_used"] = true;

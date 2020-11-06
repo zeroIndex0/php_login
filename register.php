@@ -106,6 +106,8 @@ if (empty($error_array)) {
     echo "ADDING USER: " . $_SESSION["username"] . "<br>";
     include_once "api/add_user.php";
   }
+  //unset to clear out the form after a successful entry
+  unset($_SESSION["register_firstname"], $_SESSION["register_lastname"], $_SESSION["register_email"], $_SESSION["register_email2"]);
 }
 
 ?>

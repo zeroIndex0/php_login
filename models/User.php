@@ -111,4 +111,23 @@ class User {
     }
     return $stmt;
   }
+
+  public function login_user() {
+    $query = 
+    "SELECT * FROM " . 
+    $this->table_name . 
+    " WHERE email = :email AND password = :password";
+
+    $stmt = $this->connection->prepare($query);
+
+    $stmt->bindParam(":email", $this->email);
+    $stmt->bindParam(":password", $this->password);
+
+    try {
+      $stmt->execute();
+    } catch (PDOException $error) {
+      echo "Connection Error On Login_User: " . $error->getMessage();
+    }
+    return $stmt;
+  }
 }

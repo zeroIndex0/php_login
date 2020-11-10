@@ -29,6 +29,7 @@ if($rows == 1) {
   $data = $result->fetch(PDO::FETCH_ASSOC);
   $username = $data["username"];
   $_SESSION["username"] = $username;
+  unset($_SESSION["login_email"]); //clear the email from the form after successful login
   header("Location: index.php");
   exit();
 } else {

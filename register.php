@@ -3,6 +3,7 @@
 if (!isset($_SESSION)) session_start();
 
 require "includes/form_handlers/register_handler.php";
+require "includes/form_handlers/login_handler.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,25 +16,38 @@ require "includes/form_handlers/register_handler.php";
 </head>
 
 <body>
+
+  <!-- Login -->
+  <form action="register.php" method="POST">
+    <input type="email" name="login_email" placeholder="Email Address">
+    <br>
+    <input type="password" name="login_password" placeholder="Password">
+    <br>
+    <input type="submit" name="login_button" value="Login">
+  </form>
+
+  <br>
+
+  <!-- Register -->
   <form action="register.php" method="POST">
 
     <!-- first name -->
     <input type="text" name="register_firstname" placeholder="First Name" value="
-    <?php
-    if (isset($_SESSION["register_firstname"])) {
-      echo $_SESSION["register_firstname"];
-    }
-    ?>" required>
+<?php
+if (isset($_SESSION["register_firstname"])) {
+  echo $_SESSION["register_firstname"];
+}
+?>" required>
     <br>
     <?php if (in_array("Your first name must be between 2 and 25 characters.<br>", $error_array)) echo "Your first name must be between 2 and 25 characters.<br>"; ?>
 
     <!-- last name -->
     <input type="text" name="register_lastname" placeholder="Last Name" value="
-    <?php
-    if (isset($_SESSION["register_lastname"])) {
-      echo $_SESSION["register_lastname"];
-    }
-    ?>" required>
+<?php
+if (isset($_SESSION["register_lastname"])) {
+  echo $_SESSION["register_lastname"];
+}
+?>" required>
     <br>
     <?php if (in_array("Your last name must be between 2 and 25 characters.<br>", $error_array)) echo "Your last name must be between 2 and 25 characters.<br>"; ?>
 

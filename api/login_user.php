@@ -1,4 +1,7 @@
 <?php
+
+// This file is depenent on being called from 'includes/form_handles/login_handler.php'
+
 //check for session
 if (!isset($_SESSION)) session_start();
 

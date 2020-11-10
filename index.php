@@ -8,8 +8,11 @@
 </head>
 
 <body>
-  <?php session_start() ?>
-  <?php echo "hello again"; ?>
+  <?php if (!isset($_SESSION)) session_start(); ?>
+  <?php echo "hello again <br>"; ?>
+  <?php echo "You are logged in as: " . $_SESSION["username"] . ".  Welcome! <br>"; ?>
+
+  
   <form method="POST">
     <input type="submit" name="test" value="button">
   </form>

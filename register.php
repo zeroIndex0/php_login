@@ -19,14 +19,21 @@ require "includes/form_handlers/login_handler.php";
 
   <!-- Login -->
   <form action="register.php" method="POST">
-    <input type="email" name="login_email" placeholder="Email Address">
+    <input type="email" name="login_email" placeholder="Email Address" value="
+<?php
+if (isset($_SESSION["login_email"])) {
+  echo $_SESSION["login_email"];
+}
+?>" required>
     <br>
     <input type="password" name="login_password" placeholder="Password">
     <br>
     <input type="submit" name="login_button" value="Login">
   </form>
-
   <br>
+  <?php if (in_array("Incorrect Email or Password<br>", $error_array)) echo "Incorrect Email or Password<br>" ?>
+  <br>
+  
 
   <!-- Register -->
   <form action="register.php" method="POST">

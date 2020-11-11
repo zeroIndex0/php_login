@@ -33,7 +33,7 @@ if($rows == 1) {
   header("Location: index.php");
   exit();
 } else {
-  echo "You entered something in wrong";
+  array_push($error_array, "Incorrect Email or Password<br>");
 }
 
 

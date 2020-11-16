@@ -103,6 +103,7 @@ if (empty($error_array)) {
     }
     //we made all the checks, insert the user into the database.
     //INsert all data into database, kthxbye
+    //TODO: remove this output and put in a redirect after a user was created
     echo "ADDING USER: " . $_SESSION["username"] . "<br>";
     include_once "api/add_user.php";
   }

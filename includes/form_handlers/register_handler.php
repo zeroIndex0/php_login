@@ -103,11 +103,13 @@ if (empty($error_array)) {
     }
     //we made all the checks, insert the user into the database.
     //INsert all data into database, kthxbye
-    //TODO: remove this output and put in a redirect after a user was created
-    echo "ADDING USER: " . $_SESSION["username"] . "<br>";
     include_once "api/add_user.php";
+    header("Location: index.php");
   }
   //unset to clear out the form after a successful entry
+  //now that I redirect, im curious if i need to unset just to clear out the form since I wont see it anymore
+  //I suppose the real question is: Is a header the same as a return therefore making this line of code unreachable
+  //logic would say this is unreachable, but scripting langauges can be werid
   unset($_SESSION["register_firstname"], $_SESSION["register_lastname"], $_SESSION["register_email"], $_SESSION["register_email2"]);
 }
 

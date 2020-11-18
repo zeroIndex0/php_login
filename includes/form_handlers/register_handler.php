@@ -55,7 +55,6 @@ if (isset($_POST["register_button"])) {
     }
   } else {
     array_push($error_array, "Emails don't match<br>");
-    echo ": " . $email . " and " . $email2;
   }
 
   if (strlen($firstname) > 25 || strlen($firstname) < 2) {

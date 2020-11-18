@@ -24,8 +24,6 @@ require "includes/form_handlers/login_handler.php";
       <div class="columns is-centered is-mobile">
         <div class="column is-four-fifths" style="text-align: center;">
 
-
-
           <!-- Login -->
           <div id="login_form">
             <form action="register.php" method="POST">
@@ -146,6 +144,12 @@ if (isset($_SESSION["register_lastname"])) {
     </div>
   </section>
 
+  <!-- Stay on the register form when there are errors -->
+  <?php if (isset($_POST["register_button"])) : ?>
+    <script>
+      switchToRegisterForm();
+    </script>
+  <?php endif; ?>
 
 </body>
 
